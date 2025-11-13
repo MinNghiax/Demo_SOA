@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+    <fullyQualifiedTypeName name="com.example.repository.UserRepository"/>
+    <fullyQualifiedTypeName name="com.example.model.User"/>
+    <fullyQualifiedTypeName name="com.example.dto.UserDTO"/>
+    <fullyQualifiedTypeName name="com.example.config.Config"/>
+</qualifiedTypeNameHistroy>

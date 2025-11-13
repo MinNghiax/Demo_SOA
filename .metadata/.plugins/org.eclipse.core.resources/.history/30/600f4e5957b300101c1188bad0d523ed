@@ -1,0 +1,38 @@
+# Cổng cho API Gateway, đây sẽ là cổng truy cập chính từ bên ngoài
+server:
+  port: 8080
+
+# Cấu hình để Gateway tự đăng ký với Eureka và định nghĩa các route
+spring:
+  application:
+    name: api-gateway # Tên của service này
+
+  # --- ĐỊNH NGHĨA CÁC QUY TẮC ĐỊNH TUYẾN ---
+  # Đây là nơi bạn "dạy" cho Gateway cách chuyển tiếp yêu cầu
+  cloud: # <--- SỬA LỖI 1: Khối 'cloud' phải nằm bên trong khối 'spring'
+    gateway:
+      routes:
+        # Quy tắc 1: Định tuyến đến User Service
+        - id: user-service-route        # Đặt một ID duy nhất cho quy tắc
+          uri: lb://user-service        # URI của service đích. "lb" nghĩa là "load-balanced"
+          predicates:
+            - Path=/api/users/** 
+      routes:
+              
+        - id: order-service-route       
+          uri: lb://order-service        
+          predicates:
+            - Path=/api/orders/** 
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/ # <--- SỬA LỖI 2: Dùng kebab-case cho nhất quán
+  instance:
+    prefer-ip-address: true
+
+# Bật log DEBUG để dễ dàng gỡ lỗi
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
