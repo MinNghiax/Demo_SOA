@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.model.User;
 import com.example.service.UserService;
-@CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {

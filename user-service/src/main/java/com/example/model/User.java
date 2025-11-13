@@ -5,25 +5,21 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
+@Setter   // ❗ BẮT BUỘC: thêm vào class để Lombok generate setter cho toàn bộ fields
 @Entity
 @Table(name = "users")
 public class User {
 
-    // GETTER & SETTER
-    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Setter
     @Column(length = 25, nullable = false)
     private String username;
 
-    @Setter
     @Column(length = 100, nullable = false, unique = true)
     private String email;
 
-    @Setter
     @Column(length = 255, nullable = false)
     private String password;
 
@@ -38,5 +34,4 @@ public class User {
         this.password = password;
         this.email = email;
     }
-
 }
